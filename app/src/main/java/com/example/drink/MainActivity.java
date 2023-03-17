@@ -2,7 +2,7 @@ package com.example.drink;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.hardware.biometrics.*;
+import androidx.biometric.BiometricPrompt;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 promptInfo = new BiometricPrompt.PromptInfo.Builder()
                         .setTitle("Biometric login for my app")
                         .setSubtitle("Log in using your biometric credential")
-                        .setAllowedAuthenticators(BIOMETRIC_STRONG | DEVICE_CREDENTIAL)
+                        .setAllowedAuthenticators(BIOMETRIC_WEAK)
                         .build();
             }
         });
