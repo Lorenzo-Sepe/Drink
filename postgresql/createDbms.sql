@@ -1,6 +1,6 @@
 CREATE DATABASE catalogo_drink;
 
-\c catalogo_drink;
+--c catalogo_drink;
 
 CREATE TABLE drink (
     id SERIAL PRIMARY KEY,
