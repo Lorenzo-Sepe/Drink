@@ -6,14 +6,14 @@
 int main() {
    PGconn *conn;
    PGresult *res;
-   int port;
+   char *port;
    char *address, *user, *password, *database, *query, *insert_query;
    
    printf("Inserisci l'indirizzo del server PostgreSQL: ");
    scanf("%s", address);
    
    printf("Inserisci la porta del server PostgreSQL: ");
-   scanf("%d", &port);
+   scanf("%s", port);
    
    printf("Inserisci il nome del database: ");
    scanf("%s", database);
