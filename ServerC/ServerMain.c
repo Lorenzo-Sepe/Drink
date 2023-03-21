@@ -9,18 +9,24 @@ int main() {
    char *port;
    char *address, *user, *password, *database, *query, *insert_query;
    
+    // Alloca la memoria per le stringhe
+    address = (char *) malloc(100 * sizeof(char));
    printf("Inserisci l'indirizzo del server PostgreSQL: ");
    scanf("%s", address);
-   
+    
+    port = (char *) malloc(100 * sizeof(char));
    printf("Inserisci la porta del server PostgreSQL: ");
    scanf("%s", port);
    
+    database = (char *) malloc(100 * sizeof(char));
    printf("Inserisci il nome del database: ");
    scanf("%s", database);
    
+    user = (char *) malloc(100 * sizeof(char));
    printf("Inserisci il nome utente: ");
    scanf("%s", user);
    
+    password = (char *) malloc(100 * sizeof(char));
    printf("Inserisci la password: ");
    scanf("%s", password);
    
