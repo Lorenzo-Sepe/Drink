@@ -39,18 +39,19 @@ CREATE TABLE drink_ordine (
 );
 
 
---funzionw raccomandazione drink
-CREATE OR REPLACE FUNCTION raccomanda_drink(id_utente INTEGER)
-RETURNS TABLE (
-    id INTEGER,
-    nome VARCHAR(50),
-    categoria VARCHAR(50),
-    descrizione TEXT,
-    prezzo DECIMAL(5,2),
-    immagine BYTEA,
-    punteggio INTEGER
-)
-AS $$
+-- FUNCTION: public.raccomanda_drink(integer)
+
+-- DROP FUNCTION IF EXISTS public.raccomanda_drink(integer);
+
+CREATE OR REPLACE FUNCTION public.raccomanda_drink(
+	id_utente integer)
+    RETURNS TABLE(id integer, nome character varying, categoria character varying, descrizione text, prezzo numeric, immagine bytea, punteggio bigint ) 
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $BODY$
 BEGIN
     RETURN QUERY SELECT 
         d.id, 
@@ -66,7 +67,7 @@ BEGIN
                     SELECT ordine_id 
                     FROM drink_ordine 
                     WHERE drink_id = d.id AND ordine_id IN (
-                        SELECT id 
+                        SELECT ordine.id 
                         FROM ordine 
                         WHERE utente_id = id_utente
                     )
@@ -80,5 +81,8 @@ BEGIN
     ORDER BY punteggio DESC
     LIMIT 10;
 END;
-$$ LANGUAGE plpgsql;
+$BODY$;
+
+ALTER FUNCTION public.raccomanda_drink(integer)
+    OWNER TO postgres;
 
