@@ -28,7 +28,7 @@ int main() {
    
     password = (char *) malloc(100 * sizeof(char));
    printf("Inserisci la password: ");
-   scanf("%s", password);
+   scanf("%s", password);//porva push
    
    // Connessione al database
    conn = PQsetdbLogin(address, port, NULL, NULL, database, user, password);
